@@ -107,9 +107,8 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
 			this.inventory = entry['Inventory']
 		update_display()
 	
-	elif entry['event'] == 'Loadout' and this.cargoCapacity != entry['CargoCapacity']:
-		# Emitted when loadout changes, plugin only cares if the cargo capacity changes
-		this.cargoCapacity = entry['CargoCapacity']
+	elif entry['event'] == 'Loadout'
+		this.cargoCapacity = state['CargoCapacity']
 		update_display()
 	
 	elif entry['event'] == 'StartUp':
@@ -119,26 +118,8 @@ def journal_entry(cmdr, is_beta, system, station, entry, state):
 			this.inventory = state['CargoJSON']['Inventory'] # Only supported in 4.1.6 on
 		except:
 			pass
-		cargoCap = 0
-		for i in state['Modules']:
-			if state['Modules'][i]['Item'] == 'int_cargorack_size1_class1':
-				cargoCap += 2
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size2_class1':
-				cargoCap += 4
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size3_class1':
-				cargoCap += 8
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size4_class1':
-				cargoCap += 16
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size5_class1':
-				cargoCap += 32
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size6_class1':
-				cargoCap += 64
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size7_class1':
-				cargoCap += 128
-			elif state['Modules'][i]['Item'] == 'int_cargorack_size8_class1':
-				cargoCap += 256
 
-		this.cargoCapacity = cargoCap
+		this.cargoCapacity = state['CargoCapacity']
 		update_display()
 
 def update_display():
